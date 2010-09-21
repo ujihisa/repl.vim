@@ -12,7 +12,7 @@ function! QuickInteractiveRuby()
   let l:args = 'irb --simple-prompt -r ' . l:tmpfile
   call vimshell#execute_internal_command(
         \ 'iexe', vimproc#parser#split_args(l:args), { 'stdin' : '', 'stdout' : '', 'stderr' : '' },
-        \ { 'is_interactive' : 0, 'is_from_command' : 1 })
+        \ { 'is_interactive' : 0, 'is_single_command' : 1 })
 endfunction
 
 function! QuickInteractiveHaskell()
@@ -23,7 +23,7 @@ function! QuickInteractiveHaskell()
   let l:args = 'ghci ' . l:tmpfile
   call vimshell#execute_internal_command(
         \ 'iexe', vimproc#parser#split_args(l:args), { 'stdin' : '', 'stdout' : '', 'stderr' : '' },
-        \ { 'is_interactive' : 0, 'is_from_command' : 1 })
+        \ { 'is_interactive' : 0, 'is_single_command' : 1 })
 endfunction
 
 
