@@ -7,13 +7,15 @@ function! Repl()
 endfunction
 
 function! ReplRuby()
-  let l:tmpfile = tempname() . '.rb'
-  call writefile(getline(1, expand('$')), l:tmpfile, 'b')
-  let l:args = 'irb --simple-prompt -r ' . l:tmpfile
+  let l:contents = getline(0, expand('$'))
+  let l:args = 'irb --simple-prompt'
   call vimshell#execute_internal_command(
         \ 'iexe', vimproc#parser#split_args(l:args), { 'stdin' : '', 'stdout' : '', 'stderr' : '' },
         \ { 'is_interactive' : 0, 'is_single_command' : 1 })
-  let b:interactive.close_immediately = 1
+  let b:interactive.is_close_immediately = 1
+  for l:line in l:contents
+    call vimshell#interactive#send_string(l:line . "\n")
+  endfor
 endfunction
 
 function! ReplHaskell()
@@ -25,7 +27,7 @@ function! ReplHaskell()
   call vimshell#execute_internal_command(
         \ 'iexe', vimproc#parser#split_args(l:args), { 'stdin' : '', 'stdout' : '', 'stderr' : '' },
         \ { 'is_interactive' : 0, 'is_single_command' : 1 })
-  let b:interactive.close_immediately = 1
+  let b:interactive.is_close_immediately = 1
 endfunction
 
 
