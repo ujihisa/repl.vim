@@ -13,6 +13,7 @@ function! QuickInteractiveRuby()
   call vimshell#execute_internal_command(
         \ 'iexe', vimproc#parser#split_args(l:args), { 'stdin' : '', 'stdout' : '', 'stderr' : '' },
         \ { 'is_interactive' : 0, 'is_single_command' : 1 })
+  let b:interactive.close_immediately = 1
 endfunction
 
 function! QuickInteractiveHaskell()
@@ -24,6 +25,7 @@ function! QuickInteractiveHaskell()
   call vimshell#execute_internal_command(
         \ 'iexe', vimproc#parser#split_args(l:args), { 'stdin' : '', 'stdout' : '', 'stderr' : '' },
         \ { 'is_interactive' : 0, 'is_single_command' : 1 })
+  let b:interactive.close_immediately = 1
 endfunction
 
 
