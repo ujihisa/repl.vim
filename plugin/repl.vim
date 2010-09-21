@@ -1,12 +1,12 @@
-function! QuickInteractive()
+function! Repl()
   if &filetype == 'ruby'
-    call QuickInteractiveRuby()
+    call ReplRuby()
   elseif &filetype == 'haskell'
-    call QuickInteractiveHaskell()
+    call ReplHaskell()
   endif
 endfunction
 
-function! QuickInteractiveRuby()
+function! ReplRuby()
   let l:tmpfile = tempname() . '.rb'
   call writefile(getline(1, expand('$')), l:tmpfile, 'b')
   let l:args = 'irb --simple-prompt -r ' . l:tmpfile
@@ -16,7 +16,7 @@ function! QuickInteractiveRuby()
   let b:interactive.close_immediately = 1
 endfunction
 
-function! QuickInteractiveHaskell()
+function! ReplHaskell()
   let l:tmpfile = tempname() . '.hs'
   let l:tmpobj = tempname() . '.o'
   call writefile(getline(1, expand('$')), l:tmpfile, 'b')
@@ -29,5 +29,5 @@ function! QuickInteractiveHaskell()
 endfunction
 
 
-command! -nargs=0 QuickInteractive call QuickInteractive()
-nnoremap <Space>i :<C-u>QuickInteractive<Cr>
+command! -nargs=0 Repl call Repl()
+nnoremap <Space>i :<C-u>Repl<Cr>

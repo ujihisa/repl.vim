@@ -1,4 +1,4 @@
-# quickinteractive.vim
+# repl.vim
 
 Open the interactive environment with the code you are writing.
 
@@ -14,7 +14,7 @@ You are writing the following code in an unnamed buffer.
 
 Now you want to try running the code in an interactive environment. Usually you are supposed to (1) save the code on somewhere, (2) open a terminal, (3) run `irb -r {the-file}`.
 
-If you already installed quickinteractive.vim, you just have to run `:QuickInteractive` or to type `<space>i`. It opens a buffer that is the environment you wanted.
+If you already installed quickinteractive.vim, you just have to run `:Repl` or to type `<space>i`. It opens a buffer that is the environment you wanted.
 
     irb>
 
@@ -31,13 +31,13 @@ You can do
     test1 = TestCase (assertEqual "for (foo 3)," (1,2) (foo 3))
     tests = TestList [TestLabel "test1" test1]
 
-Run `:QuickInteractive` without saving the code on a file.
+Run `:Repl` without saving the code on a file.
 
     ghci> runTestTT tests
 
 ## Installation
 
-    $ jolt install quickinteractive
+    $ jolt install repl.vim
 
 will be available soon.
 
