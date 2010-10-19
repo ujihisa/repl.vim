@@ -3,6 +3,8 @@ function! Repl()
     call ReplRuby()
   elseif &filetype == 'haskell'
     call ReplHaskell()
+  elseif &filetype == 'erlang'
+    call ReplErlang()
   endif
 endfunction
 
@@ -29,6 +31,23 @@ function! ReplHaskell()
         \ { 'is_interactive' : 0, 'is_single_command' : 1 })
   let b:interactive.is_close_immediately = 1
 endfunction
+
+function! ReplErlang()
+  " FIXME: this function messes current directly with a .bean file.
+  let l:modulename = get(matchlist(join(getline(1, line('$'))), '-module(\(.\{-}\))\.'), 1, "ujihisa")
+  let l:tmppath = substitute(tempname(), "[^/]*$", l:modulename, '')
+  let l:tmpfile = l:tmppath . '.erl'
+  "let l:tmpobj = tempname() . '.o'
+  call writefile(getline(1, expand('$')), l:tmpfile, 'b')
+  "call vimproc#system('ghc ' . l:tmpfile . ' -o ' . l:tmpobj)
+  let l:args = 'erl'
+  call vimshell#execute_internal_command(
+        \ 'iexe', vimproc#parser#split_args(l:args), { 'stdin' : '', 'stdout' : '', 'stderr' : '' },
+        \ { 'is_interactive' : 0, 'is_single_command' : 1 })
+  let b:interactive.is_close_immediately = 1
+  call vimshell#interactive#send_string(printf("c('%s').\n", l:tmppath))
+endfunction
+
 
 
 command! -nargs=0 Repl call Repl()

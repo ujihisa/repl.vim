@@ -35,6 +35,12 @@ Run `:Repl` without saving the code on a file.
 
     ghci> runTestTT tests
 
+## Supports
+
+* Ruby
+* Haskell
+* Erlang
+
 ## Installation
 
     $ jolt install repl.vim
