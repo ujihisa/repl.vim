@@ -5,6 +5,8 @@ function! Repl()
     call ReplHaskell()
   elseif &filetype == 'erlang'
     call ReplErlang()
+  elseif &filetype == 'python'
+    call ReplPython()
   endif
 endfunction
 
@@ -48,7 +50,15 @@ function! ReplErlang()
   call vimshell#interactive#send_string(printf("c('%s').\n", l:tmppath))
 endfunction
 
-
-
+function! ReplPython()
+  let l:currentFile = expand('%:r') " current file without the extension
+  let l:args = 'python -'
+  call vimshell#execute_internal_command(
+      \ 'iexe', vimproc#parser#split_args(l:args), { 'stdin': '', 'stdout': '', 'stderr': '' },
+      \ { 'is_interactive' : 0, 'is_single_command' : 1 })
+  let b:interactive.is_close_immediately = 1
+  call vimshell#interactive#send_string("from " . l:currentFile . " import *\n")
+endfunction
+  
 command! -nargs=0 Repl call Repl()
 nnoremap <Space>i :<C-u>Repl<Cr>
