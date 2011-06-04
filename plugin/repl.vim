@@ -7,6 +7,8 @@ function! Repl()
     call ReplErlang()
   elseif &filetype == 'python'
     call ReplPython()
+  elseif &filetype == 'scala'
+    call ReplScala()
   endif
 endfunction
 
@@ -58,6 +60,15 @@ function! ReplPython()
       \ { 'is_interactive' : 0, 'is_single_command' : 1 })
   let b:interactive.is_close_immediately = 1
   call vimshell#interactive#send_string("from " . l:currentFile . " import *\n")
+endfunction
+
+function! ReplScala()
+  let l:currentFile = expand('%') 
+  let l:args = 'scala -i ' . l:currentFile
+  call vimshell#execute_internal_command(
+        \ 'iexe', vimproc#parser#split_args(l:args), { 'stdin' : '', 'stdout' : '', 'stderr' : '' },
+        \ { 'is_interactive' : 0, 'is_single_command' : 1 })
+  let b:interactive.is_close_immediately = 1
 endfunction
   
 command! -nargs=0 Repl call Repl()
