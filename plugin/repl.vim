@@ -9,6 +9,8 @@ function! Repl()
     call ReplPython()
   elseif &filetype == 'scala'
     call ReplScala()
+  elseif &filetype == 'clojure'
+    call ReplClojure()
   endif
 endfunction
 
@@ -65,6 +67,15 @@ endfunction
 function! ReplScala()
   let l:currentFile = expand('%') 
   let l:args = 'scala -i ' . l:currentFile
+  call vimshell#execute_internal_command(
+        \ 'iexe', vimproc#parser#split_args(l:args), { 'stdin' : '', 'stdout' : '', 'stderr' : '' },
+        \ { 'is_interactive' : 0, 'is_single_command' : 1 })
+  let b:interactive.is_close_immediately = 1
+endfunction
+
+function! ReplClojure()
+  let l:currentFile = expand('%') 
+  let l:args = 'clj -i ' . l:currentFile . ' -r'
   call vimshell#execute_internal_command(
         \ 'iexe', vimproc#parser#split_args(l:args), { 'stdin' : '', 'stdout' : '', 'stderr' : '' },
         \ { 'is_interactive' : 0, 'is_single_command' : 1 })
