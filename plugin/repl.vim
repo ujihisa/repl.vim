@@ -98,4 +98,4 @@ endfunction
 "endfunction
   
 command! -nargs=0 Repl call Repl()
-nnoremap <Space>i :<C-u>Repl<Cr>
+nnoremap <Plug>(repl-run) :<C-u>Repl<Cr>
