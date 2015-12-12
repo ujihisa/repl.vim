@@ -61,6 +61,11 @@ will be available soon.
 * [vimshell.vim](https://github.com/Shougo/vimshell.vim)
 * [vimproc.vim](https://github.com/Shougo/vimproc.vim) (vimproc.vim was required by vimshell.vim)
 
-## Author
+## Authors
 
-Tatsuhiro Ujihisa
+* Tatsuhiro Ujihisa <ujihisa at gmail com>
+
+## Licence
+
+GPL version 3 or any later version
+Copyright (c) Tatsuhiro Ujihisa
