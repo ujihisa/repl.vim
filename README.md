@@ -64,6 +64,7 @@ will be available soon.
 ## Authors
 
 * Tatsuhiro Ujihisa <ujihisa at gmail com>
+* aiya000 <aiya000.develop at gmail com>
 
 ## Licence
 
