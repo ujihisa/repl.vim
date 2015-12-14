@@ -1,3 +1,14 @@
+let g:repl#default_filetype_repl = get(g:, 'repl_filetype_repl', {
+\ 'haskell' : {
+\   'repl' : 'ghci',
+\   'opt'  : ''
+\ },
+\ 'ruby' : {
+\   'repl' : 'irb',
+\   'opt'  : '--simple-prompt -r'
+\ }
+\})
+
 function! Repl()
   if &filetype == 'ruby'
     call ReplRuby()
@@ -34,7 +45,11 @@ function! ReplRuby()
     let l:module_file = expand('%:p')
   endif
 
-  let l:args = 'irb --simple-prompt -r ' . l:module_file
+  let l:repl = exists('g:repl_filetype_repl.ruby') ? g:repl_filetype_repl.ruby['repl']
+  \                                                : g:repl#default_filetype_repl.ruby['repl']
+  let l:opt  = exists('g:repl_filetype_repl.ruby') ? g:repl_filetype_repl.ruby['opt']
+  \                                                : g:repl#default_filetype_repl.ruby['opt']
+  let l:args = printf('%s %s %s', l:repl, l:opt, l:module_file)
   execute ':VimShellInteractive' l:args
 endfunction
 
@@ -48,7 +63,11 @@ function! ReplHaskell()
     let l:module_file = expand('%:p')
   endif
 
-  let l:args = 'ghci ' . l:module_file
+  let l:repl = exists('g:repl_filetype_repl.haskell') ? g:repl_filetype_repl.haskell['repl']
+  \                                                   : g:repl#default_filetype_repl.haskell['repl']
+  let l:opt  = exists('g:repl_filetype_repl.haskell') ? g:repl_filetype_repl.haskell['opt']
+  \                                                   : g:repl#default_filetype_repl.haskell['opt']
+  let l:args = printf('%s %s %s', l:repl, l:opt, l:module_file)
   execute ':VimShellInteractive' l:args
 endfunction
 
