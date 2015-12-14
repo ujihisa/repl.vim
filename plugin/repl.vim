@@ -8,56 +8,48 @@ function! Repl()
   elseif &filetype == 'python'
     call ReplPython()
   elseif &filetype == 'scala'
-    call ReplScala()
+    echohl Error
+    echo 'Sorry, this filetype is not supporrted'
+    echohl None
+    "call ReplScala()
   elseif &filetype == 'clojure'
-    call ReplClojure()
+    echohl Error
+    echo 'Sorry, this filetype is not supporrted'
+    echohl None
+    "call ReplClojure()
   endif
 endfunction
 
-function! s:CreateReplContext()
-  let l:context = {
-    \ 'fd': { 'stdin' : '', 'stdout' : '', 'stderr' : ''  },
-    \ 'is_interactive' : 0, 
-    \ 'is_single_command' : 1,
-    \ 'is_close_immediately': 1
-    \ }
-  return l:context
-endfunction
-
 function! s:CallVimShell(args)
-  let l:context = s:CreateReplContext()
-  call vimshell#commands#iexe#init()
-  call vimshell#set_context(l:context)
-  call vimshell#execute_internal_command(
-        \ 'iexe', vimproc#parser#split_args(a:args), 
-        \ l:context.fd, 
-        \ l:context)
-  let b:interactive.is_close_immediately = 1
+  execute ':VimShellInteractive' a:args
 endfunction
 
 
 function! ReplRuby()
-  let l:contents = getline(0, expand('$'))
-  let l:args = 'irb --simple-prompt'
+  " Setting up the obj file for the current file
+  if &modified
+    let l:module_file = tempname() . '.rb'
+    call writefile(getline(1, expand('$')), l:module_file)
+  else
+    let l:module_file = expand('%:p')
+  endif
 
-  call s:CallVimShell(l:args)
-
-  " We pass the ruby program as strings to the
-  " REPL
-  for l:line in l:contents
-    call vimshell#interactive#send_string(l:line . "\n", 1)
-  endfor
+  let l:args = 'irb --simple-prompt -r ' . l:module_file
+  execute ':VimShellInteractive' l:args
 endfunction
 
 function! ReplHaskell()
-  " Setting up the obj file for the current file
-  let l:tmpfile = tempname() . '.hs'
-  let l:tmpobj = tempname() . '.o'
-  call writefile(getline(1, expand('$')), l:tmpfile, 'b')
-  call vimproc#system('ghc ' . l:tmpfile . ' -o ' . l:tmpobj)
+  " Setting up the file for the current file
+  if &modified
+    " Create new file temporary
+    let l:module_file = tempname() . '.hs'
+    call writefile(getline(1, expand('$')), l:module_file)
+  else
+    let l:module_file = expand('%:p')
+  endif
 
-  let l:args = 'ghci ' . l:tmpfile
-  call s:CallVimShell(l:args)
+  let l:args = 'ghci ' . l:module_file
+  execute ':VimShellInteractive' l:args
 endfunction
 
 function! ReplErlang()
