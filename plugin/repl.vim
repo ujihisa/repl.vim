@@ -1,3 +1,6 @@
+"TODO: Branch python2 and python3
+"TODO: DRY
+
 let g:repl#default_filetype_repl = get(g:, 'repl_filetype_repl', {
 \ 'haskell' : {
 \   'repl' : 'ghci',
@@ -6,6 +9,10 @@ let g:repl#default_filetype_repl = get(g:, 'repl_filetype_repl', {
 \ 'ruby' : {
 \   'repl' : 'irb',
 \   'opt'  : '--simple-prompt -r'
+\ },
+\ 'python' : {
+\   'repl' : 'python',
+\   'opt'  : '-i'
 \ }
 \})
 
@@ -20,21 +27,20 @@ function! Repl()
     call ReplPython()
   elseif &filetype == 'scala'
     echohl Error
-    echo 'Sorry, this filetype is not supporrted'
+    echo "Sorry, repl.vim didn't support this filetype"
     echohl None
     "call ReplScala()
   elseif &filetype == 'clojure'
     echohl Error
-    echo 'Sorry, this filetype is not supporrted'
+    echo "Sorry, repl.vim didn't support this filetype"
     echohl None
     "call ReplClojure()
   endif
 endfunction
 
-function! s:CallVimShell(args)
-  execute ':VimShellInteractive' a:args
-endfunction
-
+"function! s:CallVimShell(args)
+"  execute ':VimShellInteractive' a:args
+"endfunction
 
 function! ReplRuby()
   " Setting up the obj file for the current file
@@ -88,12 +94,21 @@ function! ReplErlang()
 endfunction
 
 function! ReplPython()
-  let l:currentFile = expand('%:r') " current file without the extension
-  let l:args = 'python -'
-  call s:CallVimShell(l:args)
-  call vimshell#interactive#send_string(
-        \ "from " . l:currentFile . " import *\n", 
-        \1)
+  " Setting up the file for the current file
+  if &modified
+    " Create new file temporary
+    let l:module_file = tempname() . '.py'
+    call writefile(getline(1, expand('$')), l:module_file)
+  else
+    let l:module_file = expand('%:p')
+  endif
+
+  let l:repl = exists('g:repl_filetype_repl.python') ? g:repl_filetype_repl.python['repl']
+  \                                                  : g:repl#default_filetype_repl.python['repl']
+  let l:opt  = exists('g:repl_filetype_repl.python') ? g:repl_filetype_repl.python['opt']
+  \                                                  : g:repl#default_filetype_repl.python['opt']
+  let l:args = printf('%s %s %s', l:repl, l:opt, l:module_file)
+  execute ':VimShellInteractive' l:args
 endfunction
 
 "function! ReplScala()
