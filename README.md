@@ -42,24 +42,23 @@ Run `:Repl` without saving the code on a file.
 * Python (You can chose python2 or python3 interpreter)
 
 ## TODO
+
 * Erlang
 
 ## Installation
 
-Example for neobundle.vim
+Example for [neobundle.vim](https://github.com/Shougo/neobundle.vim)
 
-Please write your .vimrc
+Please add the following line into your .vimrc
 
     NeoBundle 'ujihisa/repl.vim'
 
-and run :NeoBundleInstall
+and run `:NeoBundleInstall`.
 
-will be available soon.
-
-## Requries
+## Requirements
 
 * [vimshell.vim](https://github.com/Shougo/vimshell.vim)
-* [vimproc.vim](https://github.com/Shougo/vimproc.vim) (vimproc.vim was required by vimshell.vim)
+* [vimproc.vim](https://github.com/Shougo/vimproc.vim) (vimproc.vim is required by vimshell.vim)
 
 ## Authors
 
