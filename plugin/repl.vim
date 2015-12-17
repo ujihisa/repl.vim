@@ -19,6 +19,10 @@ let g:repl#default_filetype_repl = get(g:, 'repl_filetype_repl', {
 \ 'python' : {
 \   'repl' : 'python',
 \   'opt'  : '-i'
+\ },
+\ 'erlang' : {
+\   'repl' : 'erl',
+\   'opt'  : ''
 \ }
 \})
 

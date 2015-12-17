@@ -40,9 +40,6 @@ Run `:Repl` without saving the code on a file.
 * Ruby
 * Haskell
 * Python (You can chose python2 or python3 interpreter)
-
-## TODO
-
 * Erlang
 
 ## Installation
