@@ -2,13 +2,12 @@ scriptencoding utf-8
 let s:save_cpo = &cpo
 set cpo&vim
 "-------------------"
-"
 "TODO: Branch python2 and python3
 "TODO: DRY
 
-function! s:sorry()
+function! s:echo_error(msg)
   echohl Error
-  echo "Sorry, repl.vim didn't support this filetype"
+  echo a:msg
   echohl None
 endfunction
 
@@ -28,13 +27,13 @@ function! repl#run_repl()
   elseif &filetype ==# 'python'
     call repl#start_python()
   elseif &filetype ==# 'scala'
-    call s:sorry()
+    call s:echo_error("Sorry, repl.vim didn't support this filetype")
     "call ReplScala()
   elseif &filetype ==# 'clojure'
-    call s:sorry()
+    call s:echo_error("Sorry, repl.vim didn't support this filetype")
     "call ReplClojure()
   else
-    call s:sorry()
+    call s:echo_error("Sorry, repl.vim didn't support this filetype")
   endif
 endfunction
 
@@ -53,6 +52,10 @@ function! repl#start_ruby()
   \                                                : g:repl#default_filetype_repl.ruby['repl']
   let l:opt  = exists('g:repl_filetype_repl.ruby') ? g:repl_filetype_repl.ruby['opt']
   \                                                : g:repl#default_filetype_repl.ruby['opt']
+  if !executable(l:repl)
+    call s:echo_error(printf("You don't have repl: '%s'", l:repl))
+    return
+  endif
   let l:args = printf('%s %s %s', l:repl, l:opt, l:module_file)
   execute ':VimShellInteractive' l:args
 endfunction
@@ -71,6 +74,10 @@ function! repl#start_haskell()
   \                                                   : g:repl#default_filetype_repl.haskell['repl']
   let l:opt  = exists('g:repl_filetype_repl.haskell') ? g:repl_filetype_repl.haskell['opt']
   \                                                   : g:repl#default_filetype_repl.haskell['opt']
+  if !executable(l:repl)
+    call s:echo_error(printf("You don't have repl: '%s'", l:repl))
+    return
+  endif
   let l:args = printf('%s %s %s', l:repl, l:opt, l:module_file)
   execute ':VimShellInteractive' l:args
 endfunction
@@ -89,6 +96,10 @@ function! repl#start_python()
   \                                                  : g:repl#default_filetype_repl.python['repl']
   let l:opt  = exists('g:repl_filetype_repl.python') ? g:repl_filetype_repl.python['opt']
   \                                                  : g:repl#default_filetype_repl.python['opt']
+  if !executable(l:repl)
+    call s:echo_error(printf("You don't have repl: '%s'", l:repl))
+    return
+  endif
   let l:args = printf('%s %s %s', l:repl, l:opt, l:module_file)
   execute ':VimShellInteractive' l:args
 endfunction
@@ -109,6 +120,10 @@ function! repl#start_erlang()
   \                                                  : g:repl#default_filetype_repl.erlang['repl']
   let l:opt  = exists('g:repl_filetype_repl.erlang') ? g:repl_filetype_repl.erlang['opt']
   \                                                  : g:repl#default_filetype_repl.erlang['opt']
+  if !executable(l:repl)
+    call s:echo_error(printf("You don't have repl: '%s'", l:repl))
+    return
+  endif
   let l:args = printf('%s %s %s', l:repl, l:opt, l:module_file)
 
   " Change current directory temporary
