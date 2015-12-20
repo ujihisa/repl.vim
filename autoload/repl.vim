@@ -5,6 +5,7 @@ set cpo&vim
 "TODO: Branch python2 and python3
 "TODO: DRY
 
+
 function! s:echo_error(msg) abort
   echohl Error
   echomsg a:msg
@@ -48,10 +49,8 @@ function! repl#start_ruby() abort
     let l:module_file = expand('%:p')
   endif
 
-  let l:repl = exists('g:repl_filetype_repl.ruby') ? g:repl_filetype_repl.ruby['repl']
-  \                                                : g:repl#default_filetype_repl.ruby['repl']
-  let l:opt  = exists('g:repl_filetype_repl.ruby') ? g:repl_filetype_repl.ruby['opt']
-  \                                                : g:repl#default_filetype_repl.ruby['opt']
+  let l:repl = get(g:, 'repl_filetype_repl.ruby.repl', g:repl#default_filetype_repl.ruby['repl'])
+  let l:opt  = get(g:, 'repl_filetype_repl.ruby.opt', g:repl#default_filetype_repl.ruby['opt'])
   if !executable(l:repl)
     call s:echo_error(printf("You don't have repl: '%s'", l:repl))
     return
@@ -70,10 +69,8 @@ function! repl#start_haskell() abort
     let l:module_file = expand('%:p')
   endif
 
-  let l:repl = exists('g:repl_filetype_repl.haskell') ? g:repl_filetype_repl.haskell['repl']
-  \                                                   : g:repl#default_filetype_repl.haskell['repl']
-  let l:opt  = exists('g:repl_filetype_repl.haskell') ? g:repl_filetype_repl.haskell['opt']
-  \                                                   : g:repl#default_filetype_repl.haskell['opt']
+  let l:repl = get(g:, 'repl_filetype_repl.haskell.repl', g:repl#default_filetype_repl.haskell['repl'])
+  let l:opt  = get(g:, 'repl_filetype_repl.haskell.opt', g:repl#default_filetype_repl.haskell['opt'])
   if !executable(l:repl)
     call s:echo_error(printf("You don't have repl: '%s'", l:repl))
     return
@@ -92,10 +89,8 @@ function! repl#start_python() abort
     let l:module_file = expand('%:p')
   endif
 
-  let l:repl = exists('g:repl_filetype_repl.python') ? g:repl_filetype_repl.python['repl']
-  \                                                  : g:repl#default_filetype_repl.python['repl']
-  let l:opt  = exists('g:repl_filetype_repl.python') ? g:repl_filetype_repl.python['opt']
-  \                                                  : g:repl#default_filetype_repl.python['opt']
+  let l:repl = get(g:, 'repl_filetype_repl.python.repl', g:repl#default_filetype_repl.python['repl'])
+  let l:opt  = get(g:, 'repl_filetype_repl.python.opt', g:repl#default_filetype_repl.python['opt'])
   if !executable(l:repl)
     call s:echo_error(printf("You don't have repl: '%s'", l:repl))
     return
@@ -132,10 +127,8 @@ function! repl#start_erlang() abort
     cd %:p:h
   endif
 
-  let l:repl = exists('g:repl_filetype_repl.erlang') ? g:repl_filetype_repl.erlang['repl']
-  \                                                  : g:repl#default_filetype_repl.erlang['repl']
-  let l:opt  = exists('g:repl_filetype_repl.erlang') ? g:repl_filetype_repl.erlang['opt']
-  \                                                  : g:repl#default_filetype_repl.erlang['opt']
+  let l:repl = get(g:, 'repl_filetype_repl.erlang.repl', g:repl#default_filetype_repl.erlang['repl'])
+  let l:opt  = get(g:, 'repl_filetype_repl.erlang.opt', g:repl#default_filetype_repl.erlang['opt'])
   if !executable(l:repl)
     call s:echo_error(printf("You don't have repl: '%s'", l:repl))
     return
