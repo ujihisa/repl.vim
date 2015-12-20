@@ -5,7 +5,7 @@ set cpo&vim
 "TODO: Branch python2 and python3
 "TODO: DRY
 
-function! s:echo_error(msg)
+function! s:echo_error(msg) abort
   echohl Error
   echomsg a:msg
   echohl None
@@ -17,7 +17,7 @@ endfunction
 
 "#-=- -=- -=- -=- -=- -=- -=- -=- -=-#"
 
-function! repl#run_repl()
+function! repl#run_repl() abort
   if &filetype ==# 'ruby'
     call repl#start_ruby()
   elseif &filetype ==# 'haskell'
@@ -39,7 +39,7 @@ endfunction
 
 "#-=- -=- -=- -=- -=- -=- -=- -=- -=-#"
 
-function! repl#start_ruby()
+function! repl#start_ruby() abort
   " Setting up the obj file for the current file
   if &modified
     let l:module_file = tempname() . '.rb'
@@ -60,7 +60,7 @@ function! repl#start_ruby()
   execute ':VimShellInteractive' l:args
 endfunction
 
-function! repl#start_haskell()
+function! repl#start_haskell() abort
   " Setting up the file for the current file
   if &modified
     " Create new file temporary
@@ -82,7 +82,7 @@ function! repl#start_haskell()
   execute ':VimShellInteractive' l:args
 endfunction
 
-function! repl#start_python()
+function! repl#start_python() abort
   " Setting up the file for the current file
   if &modified
     " Create new file temporary
@@ -105,7 +105,7 @@ function! repl#start_python()
 endfunction
 
 
-function! repl#start_erlang()
+function! repl#start_erlang() abort
   " FIXME: this function messes current directly with a .bean file.
   let l:pwd = getcwd()
 
@@ -161,7 +161,7 @@ endfunction
 
 "-------------------"
 
-function! s:writefile_with_erlang_module(lines, filepath)
+function! s:writefile_with_erlang_module(lines, filepath) abort
   let l:module_defined_line = match(a:lines, '-module')
   if l:module_defined_line is -1
     throw "REPL_VIM: repl.vim couldn't -module difinition !"
