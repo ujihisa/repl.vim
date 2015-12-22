@@ -5,7 +5,7 @@ endif
 let g:loaded_repl_vim = 1
 let s:save_cpo = &cpo
 set cpo&vim
-"#--- --- ---#"
+"-------------------"
 
 let g:repl#default_filetype_repl = {
 \ 'haskell' : {
@@ -25,6 +25,9 @@ let g:repl#default_filetype_repl = {
 \   'opt'  : ''
 \ }
 \}
+
+" 'split' or 'vertical split'
+let g:repl_split_command = get(g:, 'repl_split_command', 'split')
 
 command! -bar -nargs=0 Repl call repl#run_repl()
 nnoremap <silent> <Plug>(repl-run) :<C-u>call repl#run_repl()<CR>

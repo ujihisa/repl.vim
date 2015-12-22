@@ -45,9 +45,10 @@ function! repl#erlang#open_repl() abort
     call repl#echo_error(printf("You don't have repl: '%s'", l:repl))
     return
   endif
-  let l:args = printf('%s %s %s', l:repl, l:opt, l:module_file)
+  let l:args                 = printf('%s %s %s', l:repl, l:opt, l:module_file)
+  let l:vimshell_interactive = ':VimShellInteractive' . printf("--split='%s'", g:repl_split_command)
 
-  execute ':VimShellInteractive' l:args
+  execute l:vimshell_interactive l:args
   call vimshell#interactive#send(printf('c(%s).', fnamemodify(l:module_file, ':t:r')))
   execute 'cd' l:pwd
 endfunction

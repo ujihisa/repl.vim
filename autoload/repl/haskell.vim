@@ -16,6 +16,7 @@ function! repl#haskell#open_repl() abort
     call repl#echo_error(printf("You don't have repl: '%s'", l:repl))
     return
   endif
-  let l:args = printf('%s %s %s', l:repl, l:opt, l:module_file)
-  execute ':VimShellInteractive' l:args
+  let l:args                 = printf('%s %s %s', l:repl, l:opt, l:module_file)
+  let l:vimshell_interactive = ':VimShellInteractive' . printf("--split='%s'", g:repl_split_command)
+  execute l:vimshell_interactive l:args
 endfunction
