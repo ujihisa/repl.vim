@@ -1,0 +1,12 @@
+" XXX: rewrite generic path
+call themis#option('runtimepath', expand('~/Repository/repl.vim'))
+
+" Add dependency
+call themis#option('runtimepath', expand('~/.vim/bundle/vimproc.vim'))
+call themis#option('runtimepath', expand('~/.vim/bundle/vimshell.vim'))
+
+" Util Functions
+function! UnletReplUserVariables() abort
+  unlet! g:repl_filetype_repl
+  unlet! g:repl_split_command
+endfunction
