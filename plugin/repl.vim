@@ -27,7 +27,7 @@ let g:repl#default_filetype_repl = {
 \}
 
 command! -bar -nargs=0 Repl call repl#run_repl()
-nnoremap <Plug>(repl-run) :<C-u>Repl<CR>
+nnoremap <silent> <Plug>(repl-run) :<C-u>call repl#run_repl()<CR>
 
 "-------------------"
 let &cpo = s:save_cpo
