@@ -12,7 +12,7 @@ endfunction
 
 "#--- --- ---#"
 
-function! repl#start_erlang() abort
+function! repl#erlang#open_repl() abort
   " FIXME: this function messes current directly with a .bean file.
   let l:pwd = getcwd()
 
