@@ -2,6 +2,8 @@
 
 Open the interactive environment with the code you are writing.
 
+![example](top.gif)
+
 ## Ruby Example
 
 You are writing the following code in an unnamed buffer.
