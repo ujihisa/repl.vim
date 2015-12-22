@@ -7,7 +7,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 "#--- --- ---#"
 
-let g:repl#default_filetype_repl = get(g:, 'repl_filetype_repl', {
+let g:repl#default_filetype_repl = {
 \ 'haskell' : {
 \   'repl' : 'ghci',
 \   'opt'  : ''
@@ -24,7 +24,7 @@ let g:repl#default_filetype_repl = get(g:, 'repl_filetype_repl', {
 \   'repl' : 'erl',
 \   'opt'  : ''
 \ }
-\})
+\}
 
 command! -bar -nargs=0 Repl call repl#run_repl()
 nnoremap <Plug>(repl-run) :<C-u>Repl<CR>
