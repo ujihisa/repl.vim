@@ -16,7 +16,7 @@ You are writing the following code in an unnamed buffer.
 
 Now you want to try running the code in an interactive environment. Usually you are supposed to (1) save the code on somewhere, (2) open a terminal, (3) run `irb -r {the-file}`.
 
-If you already installed quickinteractive.vim, you just have to run `:Repl` or to type `<space>i`. It opens a buffer that is the environment you wanted.
+If you already installed repl.vim, you just have to run `:Repl` or to type `<space>i`. It opens a buffer that is the environment you wanted.
 
     irb>
 
