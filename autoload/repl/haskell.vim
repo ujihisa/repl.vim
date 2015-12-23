@@ -10,13 +10,12 @@ function! repl#haskell#open_repl() abort
     let l:module_file = expand('%:p')
   endif
 
-  let l:repl = get(g:, 'repl_filetype_repl.haskell.repl', g:repl#default_filetype_repl.haskell['repl'])
-  let l:opt  = get(g:, 'repl_filetype_repl.haskell.opt', g:repl#default_filetype_repl.haskell['opt'])
-  if !executable(l:repl)
-    call repl#echo_error(printf("You don't have repl: '%s'", l:repl))
+  let l:repl = repl#get_filetype_repl('haskell')
+  if !executable(l:repl['repl'])
+    call repl#echo_error(printf("You don't have repl: '%s'", l:repl['repl']))
     return
   endif
-  let l:args                 = printf('%s %s %s', l:repl, l:opt, l:module_file)
+  let l:args                 = printf('%s %s %s', l:repl['repl'], l:repl['opt'], l:module_file)
   let l:vimshell_interactive = ':VimShellInteractive' . printf("--split='%s'", g:repl_split_command)
   execute l:vimshell_interactive l:args
 endfunction

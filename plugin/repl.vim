@@ -26,7 +26,6 @@ let g:repl#default_filetype_repl = {
 \   'opt'  : ''
 \ }
 \}
-call extend(g:repl#default_filetype_repl, get(g:, 'repl_filetype_repl', {}))
 
 " 'split' or 'vertical split'
 let g:repl_split_command = get(g:, 'repl_split_command', 'split')
