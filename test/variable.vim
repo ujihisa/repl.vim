@@ -1,5 +1,6 @@
 let s:suite  = themis#suite('variable')
 let s:assert = themis#helper('assert')
+let s:scope  = themis#helper('scope')
 
 function! s:suite.after_each()
   call UnletReplUserVariables()
@@ -30,3 +31,19 @@ function! s:suite.g_repl_filetype_repl_is_valid()
   call s:assert.equals(l:filetype_repl['repl'], l:REPL_NAME)
   call s:assert.equals(l:filetype_repl['opt'], l:REPL_OPT)
 endfunction
+
+"function! s:suite.g_repl_no_default_keymappings_is_valid_if_disabled()
+"  " Case: g:repl_no_default_keymappings is undefined
+"  let s:funcs = s:scope.funcs('plugin/repl.vim')
+"  call s:funcs.define_default_keymappings()
+"  call s:assert.true(hasmapto("\i", 'n'))
+"  nunmap <leader>i
+"endfunction
+"
+"function! s:suite.g_repl_no_default_keymappings_is_valid_if_enabled()
+"  " Case: g:repl_no_default_keymappings is defined to 1
+"  let g:repl_no_default_keymappings = 1
+"  let s:funcs = s:scope.funcs('plugin/repl.vim')
+"  call s:funcs.define_default_keymappings()
+"  call s:assert.false(hasmapto("\i", 'n'))
+"endfunction

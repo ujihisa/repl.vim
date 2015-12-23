@@ -8,5 +8,6 @@ call themis#option('runtimepath', expand('~/.vim/bundle/vimshell.vim'))
 " Util Functions
 function! UnletReplUserVariables() abort
   unlet! g:repl_filetype_repl
+  unlet! g:repl_no_default_keymappings
   unlet! g:repl_split_command
 endfunction
