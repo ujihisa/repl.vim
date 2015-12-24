@@ -1,7 +1,7 @@
 let s:suite = themis#suite('can_open')
 
 function! s:suite.after_each()
-  call UnletReplUserVariables()
+  call ResetVariables()
 endfunction
 
 "-------------------"

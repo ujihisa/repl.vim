@@ -3,7 +3,7 @@ let s:assert = themis#helper('assert')
 let s:scope  = themis#helper('scope')
 
 function! s:suite.after_each()
-  call UnletReplUserVariables()
+  call ResetVariables()
 endfunction
 
 "-------------------"

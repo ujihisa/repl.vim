@@ -1,13 +1,15 @@
 " XXX: rewrite generic path
-call themis#option('runtimepath', expand('~/Repository/repl.vim'))
+call themis#option('runtimepath', expand('~/.vim/bundle/repl.vim'))
 
 " Add dependency
 call themis#option('runtimepath', expand('~/.vim/bundle/vimproc.vim'))
 call themis#option('runtimepath', expand('~/.vim/bundle/vimshell.vim'))
 
 " Util Functions
-function! UnletReplUserVariables() abort
+function! ResetVariables() abort
+  " Unlet variable
   unlet! g:repl_filetype_repl
   unlet! g:repl_no_default_keymappings
-  unlet! g:repl_split_command
+  " Set default value
+  let g:repl_split_command = 'split'
 endfunction
