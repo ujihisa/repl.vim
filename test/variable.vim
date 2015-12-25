@@ -8,7 +8,7 @@ endfunction
 
 "-------------------"
 
-function! s:suite.g_repl_filetype_repl_is_valid()
+function! s:suite.g_repl_default_filetype_repl_is_valid()
   let l:TARGET_FILETYPE = 'ruby' | lockvar l:TARGET_FILETYPE
 
   " Default value
@@ -17,7 +17,10 @@ function! s:suite.g_repl_filetype_repl_is_valid()
   let l:filetype_repl     = repl#get_filetype_repl(l:TARGET_FILETYPE)
   call s:assert.equals(l:filetype_repl['repl'], l:DEFAULT_REPL_NAME)
   call s:assert.equals(l:filetype_repl['opt'], l:DEFAULT_REPL_OPT)
+endfunction
 
+function! s:suite.g_repl_filetype_repl_is_valid()
+  let l:TARGET_FILETYPE = 'ruby' | lockvar l:TARGET_FILETYPE
   " Not a default value
   let l:REPL_NAME = 'dummy'   | lockvar l:REPL_NAME
   let l:REPL_OPT  = '--dummy' | lockvar l:REPL_OPT
@@ -30,6 +33,14 @@ function! s:suite.g_repl_filetype_repl_is_valid()
   let l:filetype_repl = repl#get_filetype_repl(l:TARGET_FILETYPE)
   call s:assert.equals(l:filetype_repl['repl'], l:REPL_NAME)
   call s:assert.equals(l:filetype_repl['opt'], l:REPL_OPT)
+
+  " and Default value
+  let l:ANOTHER_TARGET_FILETYPE = 'python' | lockvar l:ANOTHER_TARGET_FILETYPE
+  let l:default_repl_name = g:repl#default_filetype_repl[l:ANOTHER_TARGET_FILETYPE].repl
+  let l:default_repl_opt  = g:repl#default_filetype_repl[l:ANOTHER_TARGET_FILETYPE].opt
+  let l:filetype_repl     = repl#get_filetype_repl(l:ANOTHER_TARGET_FILETYPE)
+  call s:assert.equals(l:filetype_repl['repl'], l:default_repl_name)
+  call s:assert.equals(l:filetype_repl['opt'], l:default_repl_opt)
 endfunction
 
 "function! s:suite.g_repl_no_default_keymappings_is_valid_if_disabled()
