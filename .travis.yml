@@ -1,0 +1,23 @@
+language: generic
+
+env:
+    - PPA=yes
+    - PPA=no
+
+install:
+    - sudo apt-get update -q
+    - sudo apt-get insetall vim-nox
+    - mkdir -p ~/.vim/bundle
+    - git clone https://github.com/thinca/vim-themis ~/.vim/bundle/vim-themis
+    - git clone https://github.com/Shougo/vimproc.vim ~/.vim/bundle/vimproc.vim
+    - cd ~/.vim/bundle/vimproc.vim
+    - make -f make_unix.mak
+    - cd -
+    - git clone https://github.com/Shougo/vimshell.vim ~/.vim/bundle/vimshell.vim
+    - git clone https://github.com/ujihisa/repl.vim ~/.vim/bundle/repl.vim
+
+before_script:
+    - vim --version
+
+script:
+    - ~/.vim/bundle/vim-themis/bin/themis ~/.vim/bundle/repl.vim/test --reporter spec
