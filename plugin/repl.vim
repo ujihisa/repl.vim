@@ -38,7 +38,7 @@ nnoremap <silent> <Plug>(repl-run) :<C-u>call repl#run_repl()<CR>
 " Define default keymappings
 function! s:define_default_keymappings()
   if !exists('g:repl_no_default_keymappings') || !g:repl_no_default_keymappings
-    nmap <leader>i <Plug>(repl-run)
+    nmap <space>i <Plug>(repl-run)
   endif
 endfunction
 call s:define_default_keymappings()

@@ -1,0 +1,158 @@
+*repl.jax*	要約
+
+Version : 2.0.0
+Author  : Tatsuhiro Ujihisa, aiya000
+License : MIT license  {{{
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+}}}
+
+==============================================================================
+目次						*repl-contents*
+
+概要				|repl-introduction|
+依存プラグイン			|repl-dependency|
+対応ファイルタイプ		|repl-filetypes|
+使い方				|repl-usage|
+インターフェイス		|repl-interface|
+  変数				  |repl-variables|
+  コマンド			  |repl-commands|
+  キーマッピング		  |repl-key-mappings|
+  関数				  |repl-functions|
+TODO				|repl-todo|
+更新履歴			|repl-changelog|
+
+
+==============================================================================
+概要						*repl-introduction*
+
+「Vimで各言語のreplをすぐに開きたい…そこでrepl.vim！」
+
+*repl.vim* は 現在開いているバッファの'filetype'に対応するreplを
+その場で開くためのプラグインです。
+
+これを使用することにより
+  1. 開きたい言語のreplを開く
+  2. 現在開いているファイルの内容をreplに読み込ませる
+という手続きを
+  1. |:Repl| コマンドを実行する
+一度に行うことができます。
+
+また、|repl.vim|は編集中バッファの内容も、replに読み込ませることができます。
+
+
+最新版:
+https://github.com/user/repl.vim
+
+
+==============================================================================
+依存プラグイン					*repl-dependency*
+
+* [vimshell.vim](https://github.com/Shougo/vimshell.vim)
+* [vimproc.vim](https://github.com/Shougo/vimproc.vim)
+
+==============================================================================
+対応ファイルタイプ				*repl-filetypes*
+
+* Ruby
+* Haskell
+* Python (2 or 3)
+* Erlang
+
+==============================================================================
+使い方						*repl-usage*
+
+1. 'filetype'がemptyでないファイルを開きます ( 例えば.rb )
+2. |:Repl| コマンドを実行します
+3. 'filetype'に対応するreplが開きます ( 例えばirb )
+4. 自動的にカレントバッファの内容をreplが読み込みます
+
+
+==============================================================================
+インターフェイス				*repl-interface*
+
+------------------------------------------------------------------------------
+変数						*repl-variables*
+
+g:repl_filetype_repl				*g:repl_filetype_repl*
+	|repl.vim|が'filetype'に対して開くreplを指定することができます。
+	また、同時にreplのオプションを指定することができます。
+
+	例:
+	もし貴方がHaskellでstack ghciを使っているのであれば、以下の設定で
+	.hsでstack ghciを開くことができます。
+
+	" Use ghci
+	let g:repl_filetype_repl = {
+	\	'haskell' : {
+	\		'repl' : 'stack exec -- ghci',
+	\		'opt'  : ''
+	\	}
+	\}
+
+
+g:repl_split_command				*g:repl_split_command*
+	既定値: "split"
+
+	|repl.vim|がreplを開く際のバッファの分割方法を指定します。
+
+	g:repl_split_commandが"split"の場合、|repl.vim|は
+	水平に画面を分割し、現在のバッファの下か上にバッファを開きます。
+	g:repl_split_commandが"vertical split"の場合、|repl.vim|は
+	垂直に画面を分割し、現在のバッファの左か右にバッファを開きます。
+
+
+g:repl_no_default_keymappings		*g:repl_no_default_keymappings*
+	この変数が未定義もしくは0である場合
+	|repl.vim|は自動で<space>iに<Plug>(repl-run)をマッピングします。
+
+
+------------------------------------------------------------------------------
+コマンド					*repl-commands*
+
+:Repl						*:Repl*
+	|repl.vim|を実行します。
+
+------------------------------------------------------------------------------
+キーマッピング					*repl-key-mappings*
+
+<Plug>(repl-run)				*<Plug>(repl-run)*
+	有効モード: ノーマル
+	デフォルトマッピング(グローバル):
+		ノーマル:	<space>i
+
+	|repl.vim|を実行します。
+
+------------------------------------------------------------------------------
+関数						*repl-functions*
+
+repl#run_repl()					*repl#run_repl()*
+	|:Repl|の実装です。
+
+
+==============================================================================
+TODO						*repl-todo*
+
+
+
+==============================================================================
+更新履歴					*repl-changelog*
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:
