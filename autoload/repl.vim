@@ -28,12 +28,12 @@ endfunction
 "     echo repl#get_filetype_repl('python')
 " => {'repl': 'python', 'opt': '-i'}
 function! repl#get_filetype_repl(filetype) abort
-	if !exists('g:repl_filetype_repl')
-		return g:repl#default_filetype_repl[a:filetype]
-	endif
-	let l:filetype_repl = deepcopy(g:repl#default_filetype_repl)
-	call extend(l:filetype_repl, g:repl_filetype_repl)
-	return l:filetype_repl[a:filetype]
+  if !exists('g:repl_filetype_repl')
+    return g:repl#default_filetype_repl[a:filetype]
+  endif
+  let l:filetype_repl = deepcopy(g:repl#default_filetype_repl)
+  call extend(l:filetype_repl, g:repl_filetype_repl)
+  return l:filetype_repl[a:filetype]
 endfunction
 
 "-------------------"
