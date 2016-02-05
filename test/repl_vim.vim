@@ -12,6 +12,7 @@ function! s:suite.do_not_throw_exception_when_open_repl()
   setfiletype haskell | Repl | new
   setfiletype erlang  | Repl | new
   setfiletype python  | Repl | new
+  setfiletype javascript  | Repl | new
   " repl.vim cannot open repl
   " but repl.vim don't throw some exception
   setfiletype unknown | Repl

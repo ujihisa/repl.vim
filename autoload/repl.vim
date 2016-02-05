@@ -18,6 +18,8 @@ function! repl#run_repl() abort
     call repl#erlang#open_repl()
   elseif &filetype ==# 'python'
     call repl#python#open_repl()
+  elseif &filetype ==# 'javascript'
+    call repl#javascript#open_repl()
   else
     call repl#echo_error("Sorry, repl.vim didn't support this filetype")
   endif

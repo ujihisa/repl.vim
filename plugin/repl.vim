@@ -24,6 +24,10 @@ let g:repl#default_filetype_repl = {
 \ 'erlang' : {
 \   'repl' : 'erl',
 \   'opt'  : ''
+\ },
+\ 'javascript' : {
+\   'repl' : 'node',
+\   'opt'  : '-i'
 \ }
 \}
 
