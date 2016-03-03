@@ -28,6 +28,10 @@ let g:repl#default_filetype_repl = {
 \ 'javascript' : {
 \   'repl' : 'node',
 \   'opt'  : '-i'
+\ },
+\ 'clojure' : {
+\   'repl' : 'lein',
+\   'opt'  : 'repl'
 \ }
 \}
 

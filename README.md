@@ -44,6 +44,7 @@ Run `:Repl` without saving the code on a file.
 * Python (You can chose python2 or python3 interpreter)
 * Erlang
 * JavaScript
+* Clojure
 
 ## Installation
 
