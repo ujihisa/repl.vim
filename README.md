@@ -45,6 +45,7 @@ Run `:Repl` without saving the code on a file.
 * Erlang
 * JavaScript
 * Clojure
+* Idris
 
 ## Installation
 
