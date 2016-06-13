@@ -73,7 +73,8 @@ https://github.com/user/repl.vim
 * Haskell
 * Python (2 or 3)
 * Erlang
-* Javascript
+* Javascript (node.js)
+* Idris
 
 ==============================================================================
 使い方						*repl-usage*
