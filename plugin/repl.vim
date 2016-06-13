@@ -32,6 +32,10 @@ let g:repl#default_filetype_repl = {
 \ 'clojure' : {
 \   'repl' : 'lein',
 \   'opt'  : 'repl'
+\ },
+\ 'idris' : {
+\   'repl' : 'idris',
+\   'opt'  : ''
 \ }
 \}
 
