@@ -46,6 +46,7 @@ Run `:Repl` without saving the code on a file.
 * JavaScript
 * Clojure
 * Idris
+* Racket
 
 ## Installation
 

@@ -18,7 +18,7 @@ let g:repl#default_filetype_repl = {
 \   'opt'  : '--simple-prompt -r'
 \ },
 \ 'python' : {
-\   'repl' : 'python',
+\   'repl' : 'python3.6',
 \   'opt'  : '-i'
 \ },
 \ 'erlang' : {
@@ -36,6 +36,10 @@ let g:repl#default_filetype_repl = {
 \ 'idris' : {
 \   'repl' : 'idris',
 \   'opt'  : ''
+\ },
+\ 'racket' : {
+\   'repl' : 'racket',
+\   'opt' : ''
 \ }
 \}
 
