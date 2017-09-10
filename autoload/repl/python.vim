@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-function! repl#scheme#open_repl() abort
+function! repl#python#open_repl() abort
   " Setting up the file for the current file
   if &modified
     " Create new file temporary

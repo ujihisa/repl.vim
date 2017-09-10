@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-function! repl#clojure#open_repl() abort
+function! repl#scheme#open_repl() abort
   if &modified
     let l:module_file = tempname() . '.rkt'
     call writefile(getline(1, expand('$')), l:module_file)
