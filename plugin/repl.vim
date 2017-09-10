@@ -39,7 +39,7 @@ let g:repl#default_filetype_repl = {
 \ },
 \ 'scheme' : {
 \   'repl' : 'racket',
-\   'opt' : ''
+\   'opt' : '-i'
 \ }
 \}
 
