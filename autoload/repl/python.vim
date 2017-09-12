@@ -19,6 +19,10 @@ function! repl#python#open_repl() abort
   let l:args                 = printf('%s %s %s', l:repl['repl'], l:repl['opt'], l:module_file)
   let l:vimshell_interactive = ':VimShellInteractive' . printf("--split='%s'", g:repl_split_command)
   execute l:vimshell_interactive l:args
-  let l:test = ':resize 10'
-  execute l:test
+  let l:resize = ':resize 10'
+  execute l:resize
+  let l:nonum = ':set nonumber'
+  execute l:nonum
+  let l:swp = ':wincmd r'
+  execute l:swp
 endfunction

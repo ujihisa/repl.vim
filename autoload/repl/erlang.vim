@@ -50,6 +50,11 @@ function! repl#erlang#open_repl() abort
 
   execute l:vimshell_interactive l:args
   let l:resize = ':resize 10'
-  execute l:resize call vimshell#interactive#send(printf('c(%s).', fnamemodify(l:module_file, ':t:r')))
+  let l:nonum = ':set nonumber'
+  execute l:nonum
+  let l:swp = ':wincmd r'
+  execute l:swp
+  execute l:resize
+  call vimshell#interactive#send(printf('c(%s).', fnamemodify(l:module_file, ':t:r')))
   execute 'cd' l:pwd
 endfunction
