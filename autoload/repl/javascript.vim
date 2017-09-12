@@ -20,5 +20,7 @@ function! repl#javascript#open_repl() abort
   let l:args                 = printf('%s %s',  l:repl['repl'], l:repl['opt'])
   let l:vimshell_interactive = ':VimShellInteractive' . printf("--split='%s'", g:repl_split_command)
   execute l:vimshell_interactive l:args
+  let l:resize = ':resize 10'
+  execute l:resize
   call vimshell#interactive#send('.load ' . l:module_file)
 endfunction

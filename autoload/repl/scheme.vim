@@ -17,5 +17,7 @@ function! repl#scheme#open_repl() abort
   let l:args                 = printf('%s -f %s %s', l:repl['repl'], l:module_file, l:repl['opt'])
   let l:vimshell_interactive = ':VimShellInteractive' . printf("--split='%s'", g:repl_split_command)
   execute l:vimshell_interactive l:args
+  let l:resize = ':resize 10'
+  execute l:resize
 endfunction
 
