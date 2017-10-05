@@ -54,7 +54,7 @@ Example for [neobundle.vim](https://github.com/Shougo/neobundle.vim)
 
 Please add the following line into your .vimrc
 
-    NeoBundle 's-zeng/repl.vim'
+    NeoBundle 'ujihisa/repl.vim'
 
 and run `:NeoBundleInstall`.
 

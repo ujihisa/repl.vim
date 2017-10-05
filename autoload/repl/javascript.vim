@@ -19,7 +19,6 @@ function! repl#javascript#open_repl() abort
   endif
   let l:args                 = printf('%s %s',  l:repl['repl'], l:repl['opt'])
   let l:vimshell_interactive = ':VimShellInteractive' . printf("--split='%s'", g:repl_split_command)
-  l:swp = ':wincmd r'
-  execute l:swp
+  execute l:vimshell_interactive l:args
   call vimshell#interactive#send('.load ' . l:module_file)
 endfunction
