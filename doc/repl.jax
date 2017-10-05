@@ -75,6 +75,7 @@ https://github.com/user/repl.vim
 * Erlang
 * Javascript (node.js)
 * Idris
+* Scheme (racket)
 
 ==============================================================================
 使い方						*repl-usage*
