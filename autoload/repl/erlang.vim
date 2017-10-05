@@ -49,12 +49,6 @@ function! repl#erlang#open_repl() abort
   let l:vimshell_interactive = ':VimShellInteractive' . printf("--split='%s'", g:repl_split_command)
 
   execute l:vimshell_interactive l:args
-  let l:resize = ':resize 10'
-  let l:nonum = ':set nonumber'
-  execute l:nonum
-  let l:swp = ':wincmd r'
-  execute l:swp
-  execute l:resize
   call vimshell#interactive#send(printf('c(%s).', fnamemodify(l:module_file, ':t:r')))
   execute 'cd' l:pwd
 endfunction
