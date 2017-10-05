@@ -36,6 +36,10 @@ let g:repl#default_filetype_repl = {
 \ 'idris' : {
 \   'repl' : 'idris',
 \   'opt'  : ''
+\ },
+\ 'scheme' : {
+\   'repl' : 'racket',
+\   'opt' : '-i'
 \ }
 \}
 
