@@ -18,7 +18,7 @@ let g:repl#default_filetype_repl = {
 \   'opt'  : '--simple-prompt -r'
 \ },
 \ 'python' : {
-\   'repl' : 'python3.6',
+\   'repl' : 'python',
 \   'opt'  : '-i'
 \ },
 \ 'erlang' : {
