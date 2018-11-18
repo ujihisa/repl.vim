@@ -15,6 +15,7 @@ function! s:suite.do_not_throw_exception_when_open_repl()
   setfiletype javascript | Repl | new
   setfiletype clojure    | Repl | new
   setfiletype idris      | Repl | new
+  setfiletype swiprolog  | Repl | new
   " repl.vim cannot open repl
   " but repl.vim don't throw some exception
   setfiletype unknown | Repl

@@ -47,6 +47,7 @@ Run `:Repl` without saving the code on a file.
 * Clojure
 * Idris
 * Racket
+* SWIProlog
 
 ## Installation
 

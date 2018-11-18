@@ -76,6 +76,7 @@ https://github.com/user/repl.vim
 * Javascript (node.js)
 * Idris
 * Scheme (racket)
+* Prolog (swipl)
 
 ==============================================================================
 使い方						*repl-usage*
